@@ -262,8 +262,8 @@ h1, h2, h3 { margin: 0; }
   gap: 40px;
 }
 .hero-copy { padding-bottom: clamp(40px, 9vh, 110px); }
-.hero-logo { margin: 28px 0 26px; }
-.hero-logo img { width: min(560px, 100%); height: auto; }
+.hero-logo { margin: 30px 0 30px; }
+.hero-logo img { width: min(360px, 78%); height: auto; opacity: .96; }
 
 .hero-tagline {
   font-family: var(--font-display);
@@ -828,7 +828,8 @@ h1, h2, h3 { margin: 0; }
   .formats { grid-template-columns: 1fr; }
   .hero-actions .btn { width: 100%; }
   .eyebrow { font-size: .66rem; letter-spacing: .14em; padding: 7px 12px; }
-  .hero-logo { margin: 22px 0 20px; }
+  .hero-logo { margin: 24px 0 22px; }
+  .hero-logo img { width: min(250px, 70%); }
   .btn-youtube { width: 100%; padding: 0 18px; font-size: .95rem; }
   .ticker span { font-size: 1rem; }
   .footer-bottom { flex-direction: column; text-align: center; }
