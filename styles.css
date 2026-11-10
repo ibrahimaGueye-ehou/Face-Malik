@@ -14,7 +14,7 @@
   --line: rgba(243, 241, 236, 0.12);
   --line-strong: rgba(243, 241, 236, 0.22);
 
-  --font-display: "Archivo", "Arial Narrow", system-ui, sans-serif;
+  --font-display: Impact, "Anton", "Haettenschweiler", "Arial Narrow Bold", sans-serif;
   --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
 
   --container: 1200px;
@@ -74,11 +74,10 @@ h1, h2, h3 { margin: 0; }
 
 .display {
   font-family: var(--font-display);
-  font-weight: 800;
-  font-stretch: 112%;
-  font-size: clamp(2rem, 4.6vw, 3.6rem);
-  line-height: 1.04;
-  letter-spacing: -0.02em;
+  font-weight: 400;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  line-height: 1.02;
+  letter-spacing: 0.01em;
   text-transform: uppercase;
 }
 .display em,
@@ -92,9 +91,8 @@ h1, h2, h3 { margin: 0; }
 
 .kicker {
   display: inline-flex; align-items: center; gap: 12px;
-  font-family: var(--font-display);
-  font-stretch: 120%;
-  font-weight: 700;
+  font-family: var(--font-body);
+  font-weight: 600;
   font-size: 0.78rem;
   letter-spacing: 0.24em;
   text-transform: uppercase;
@@ -140,10 +138,9 @@ h1, h2, h3 { margin: 0; }
   border-radius: 100px;
   border: 1px solid transparent;
   font-family: var(--font-display);
-  font-stretch: 112%;
-  font-weight: 700;
-  font-size: 0.85rem;
-  letter-spacing: 0.12em;
+  font-weight: 400;
+  font-size: 1rem;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   text-decoration: none;
   cursor: pointer;
@@ -162,7 +159,7 @@ h1, h2, h3 { margin: 0; }
 .btn-youtube svg { fill: #e01b24; width: 22px; height: 22px; }
 .btn-youtube:hover { background: #f1eee8; }
 
-.btn-sm { min-height: 42px; padding: 0 18px; font-size: 0.72rem; }
+.btn-sm { min-height: 42px; padding: 0 20px; font-size: 0.9rem; }
 .btn-block { width: 100%; }
 
 /* ==========================================================================
@@ -249,7 +246,7 @@ h1, h2, h3 { margin: 0; }
 .hero-bg { position: absolute; inset: 0; pointer-events: none; }
 .hero-word {
   position: absolute; right: -2vw; bottom: -6vw;
-  font-family: var(--font-display); font-weight: 900; font-stretch: 125%;
+  font-family: var(--font-display); font-weight: 400;
   font-size: clamp(9rem, 30vw, 28rem); line-height: .8;
   color: transparent;
   -webkit-text-stroke: 1px rgba(243, 241, 236, .07);
@@ -270,12 +267,11 @@ h1, h2, h3 { margin: 0; }
 
 .hero-tagline {
   font-family: var(--font-display);
-  font-stretch: 115%;
-  font-weight: 800;
+  font-weight: 400;
   text-transform: uppercase;
-  font-size: clamp(1.3rem, 2.4vw, 1.9rem);
-  line-height: 1.15;
-  letter-spacing: 0.01em;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  line-height: 1.1;
+  letter-spacing: 0.02em;
   margin-bottom: 18px;
 }
 .hero-lead { color: var(--muted); max-width: 520px; font-size: 1.05rem; }
@@ -321,7 +317,7 @@ h1, h2, h3 { margin: 0; }
   border-radius: 12px;
 }
 .hero-badge-label { font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
-.hero-badge-name { font-family: var(--font-display); font-weight: 800; font-stretch: 115%; text-transform: uppercase; font-size: 1.15rem; line-height: 1.3; }
+.hero-badge-name { font-family: var(--font-display); font-weight: 400; letter-spacing: .03em; text-transform: uppercase; font-size: 1.15rem; line-height: 1.3; }
 
 .scroll-hint {
   position: absolute; left: 50%; bottom: 26px; z-index: 2;
@@ -356,7 +352,7 @@ h1, h2, h3 { margin: 0; }
   animation: ticker 40s linear infinite;
 }
 .ticker span {
-  font-family: var(--font-display); font-weight: 800; font-stretch: 120%;
+  font-family: var(--font-display); font-weight: 400;
   text-transform: uppercase; letter-spacing: .06em;
   font-size: 1.15rem; white-space: nowrap; color: #fff;
 }
@@ -397,8 +393,8 @@ h1, h2, h3 { margin: 0; }
   color: var(--accent-hi);
 }
 .behind-to {
-  font-family: var(--font-display); font-weight: 700; font-stretch: 105%;
-  font-size: clamp(1.25rem, 2.2vw, 1.6rem); line-height: 1.25;
+  font-family: var(--font-display); font-weight: 400;
+  font-size: clamp(1.4rem, 2.4vw, 1.8rem); line-height: 1.2; letter-spacing: .01em;
 }
 
 .ambition {
@@ -424,8 +420,8 @@ h1, h2, h3 { margin: 0; }
 }
 .ambition-text {
   position: relative;
-  font-family: var(--font-display); font-weight: 700; font-stretch: 105%;
-  font-size: clamp(1.4rem, 3vw, 2.3rem); line-height: 1.25; letter-spacing: -0.01em;
+  font-family: var(--font-display); font-weight: 400;
+  font-size: clamp(1.5rem, 3.2vw, 2.5rem); line-height: 1.2; letter-spacing: 0.01em;
   max-width: 900px;
 }
 .ambition-sign { color: var(--muted); margin: 26px 0 0; padding-top: 22px; border-top: 1px solid var(--line); }
@@ -458,7 +454,7 @@ h1, h2, h3 { margin: 0; }
 .card > * { position: relative; }
 .card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
 .card-num {
-  font-family: var(--font-display); font-weight: 800; font-stretch: 120%;
+  font-family: var(--font-body); font-weight: 600;
   font-size: .85rem; letter-spacing: .1em; color: var(--muted);
 }
 .card-icon {
@@ -469,9 +465,9 @@ h1, h2, h3 { margin: 0; }
   fill: none; stroke: var(--accent-hi); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
 }
 .card h3 {
-  font-family: var(--font-display); font-weight: 800; font-stretch: 112%;
-  text-transform: uppercase; letter-spacing: .01em;
-  font-size: 1.2rem; line-height: 1.2; margin-bottom: 14px;
+  font-family: var(--font-display); font-weight: 400;
+  text-transform: uppercase; letter-spacing: .03em;
+  font-size: 1.4rem; line-height: 1.2; margin-bottom: 14px;
 }
 .card p { color: var(--muted); font-size: .97rem; margin: 0; }
 
@@ -485,9 +481,9 @@ h1, h2, h3 { margin: 0; }
 }
 .spirit .kicker { justify-content: center; }
 .spirit-title {
-  font-family: var(--font-display); font-weight: 900; font-stretch: 118%;
+  font-family: var(--font-display); font-weight: 400;
   text-transform: uppercase;
-  font-size: clamp(2.2rem, 6.4vw, 5.4rem); line-height: 1; letter-spacing: -0.025em;
+  font-size: clamp(2.6rem, 7vw, 6rem); line-height: 1; letter-spacing: 0.01em;
   margin-bottom: clamp(40px, 6vw, 70px);
 }
 .spirit-grid {
@@ -505,7 +501,7 @@ h1, h2, h3 { margin: 0; }
 .pillars li {
   padding: 10px 22px;
   border: 1px solid var(--line-strong); border-radius: 100px;
-  font-family: var(--font-display); font-weight: 700; font-stretch: 115%;
+  font-family: var(--font-body); font-weight: 600;
   text-transform: uppercase; letter-spacing: .1em; font-size: .8rem;
 }
 .spirit-quote {
@@ -513,11 +509,11 @@ h1, h2, h3 { margin: 0; }
   max-width: 820px;
 }
 .spirit-quote p {
-  font-family: var(--font-display); font-weight: 600; font-stretch: 100%;
+  font-family: var(--font-display); font-weight: 400;
   font-size: clamp(1.25rem, 2.6vw, 1.9rem); line-height: 1.35;
   margin: 0;
 }
-.spirit-quote strong { color: var(--accent-hi); font-weight: 800; }
+.spirit-quote strong { color: var(--accent-hi); font-weight: 400; }
 
 /* ---------- Host ---------- */
 
@@ -539,7 +535,7 @@ h1, h2, h3 { margin: 0; }
 .host-frame::before {
   content: "THE BOSS";
   position: absolute; left: 50%; top: 10%; transform: translateX(-50%);
-  font-family: var(--font-display); font-weight: 900; font-stretch: 125%;
+  font-family: var(--font-display); font-weight: 400;
   font-size: clamp(3rem, 7vw, 6rem); line-height: 1; white-space: nowrap;
   color: transparent; -webkit-text-stroke: 1px rgba(243, 241, 236, .1);
 }
@@ -556,15 +552,15 @@ h1, h2, h3 { margin: 0; }
   position: absolute; right: -14px; top: 40px;
   background: var(--accent); color: #fff;
   padding: 10px 18px; border-radius: 8px;
-  font-family: var(--font-display); font-weight: 800; font-stretch: 118%;
+  font-family: var(--font-body); font-weight: 600;
   text-transform: uppercase; letter-spacing: .12em; font-size: .78rem;
   transform: rotate(3deg);
   box-shadow: 0 12px 30px -10px rgba(0,0,0,.6);
 }
 .host-name {
-  font-family: var(--font-display); font-weight: 900; font-stretch: 122%;
+  font-family: var(--font-display); font-weight: 400;
   text-transform: uppercase; font-size: clamp(3rem, 7vw, 5.8rem);
-  line-height: .92; letter-spacing: -0.025em; margin-bottom: 18px;
+  line-height: .95; letter-spacing: 0.01em; margin-bottom: 18px;
 }
 .host-role {
   font-size: .82rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase;
@@ -579,7 +575,7 @@ h1, h2, h3 { margin: 0; }
 }
 .host-ambition p:last-child {
   margin: 0;
-  font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; line-height: 1.4;
+  font-family: var(--font-body); font-weight: 600; font-size: 1.2rem; line-height: 1.4;
 }
 
 /* ---------- Episodes ---------- */
@@ -670,7 +666,7 @@ h1, h2, h3 { margin: 0; }
 .contact-copy strong { color: var(--text); }
 .contact-punch {
   margin-top: 34px;
-  font-family: var(--font-display); font-weight: 800; font-stretch: 112%;
+  font-family: var(--font-display); font-weight: 400;
   text-transform: uppercase; font-size: clamp(1.4rem, 2.6vw, 2rem); line-height: 1.15;
 }
 
@@ -681,7 +677,7 @@ h1, h2, h3 { margin: 0; }
   border: 1px solid var(--line);
 }
 .contact-form h3 {
-  font-family: var(--font-display); font-weight: 800; font-stretch: 112%;
+  font-family: var(--font-display); font-weight: 400;
   text-transform: uppercase; font-size: 1.25rem; margin-bottom: 24px;
 }
 .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -733,7 +729,7 @@ h1, h2, h3 { margin: 0; }
 .footer-logo { width: min(380px, 80%); height: auto; }
 .footer-tagline {
   margin: 24px 0 0;
-  font-family: var(--font-display); font-weight: 700; font-stretch: 115%;
+  font-family: var(--font-body); font-weight: 600;
   text-transform: uppercase; letter-spacing: .2em; font-size: .85rem; color: var(--muted);
 }
 .footer-bottom {
@@ -833,7 +829,7 @@ h1, h2, h3 { margin: 0; }
   .hero-actions .btn { width: 100%; }
   .eyebrow { font-size: .66rem; letter-spacing: .14em; padding: 7px 12px; }
   .hero-logo { margin: 22px 0 20px; }
-  .btn-youtube { width: 100%; padding: 0 18px; font-size: .78rem; }
+  .btn-youtube { width: 100%; padding: 0 18px; font-size: .95rem; }
   .ticker span { font-size: 1rem; }
   .footer-bottom { flex-direction: column; text-align: center; }
   .footer-bottom nav { justify-content: center; }
