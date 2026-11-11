@@ -182,7 +182,7 @@ h1, h2, h3 { margin: 0; }
   height: 100%;
   display: flex; align-items: center; justify-content: space-between; gap: 24px;
 }
-.brand img { height: 40px; width: auto; }
+.brand img { height: 50px; width: auto; }
 
 .main-nav ul {
   display: flex; gap: 34px;
@@ -817,7 +817,7 @@ h1, h2, h3 { margin: 0; }
 }
 
 @media (max-width: 600px) {
-  .brand img { height: 32px; }
+  .brand img { height: 40px; }
   .cards { grid-template-columns: 1fr; }
   .field-row { grid-template-columns: 1fr; gap: 0; }
   .formats { grid-template-columns: 1fr; }
