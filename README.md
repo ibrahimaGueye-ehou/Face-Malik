@@ -1,6 +1,6 @@
-# THE BOSS — par Malik Eudy
+# FACE À MALIK — le podcast de Malik Eudy
 
-Site vitrine statique du podcast **THE BOSS** (HTML / CSS / JavaScript, sans dépendance ni étape de build).
+Site vitrine statique du podcast **FACE À MALIK** (HTML / CSS / JavaScript, sans dépendance ni étape de build).
 
 ## Aperçu local
 
