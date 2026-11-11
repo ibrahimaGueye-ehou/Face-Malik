@@ -84,6 +84,9 @@ document.addEventListener("DOMContentLoaded", () => {
     reveals.forEach((el) => el.classList.add("is-visible"));
   }
 
+  /* ---------- Hero : plateau en 3D (parallaxe par carte de profondeur) ---------- */
+  initStudio3D();
+
   /* ---------- Contact form (opens the visitor's mail client) ---------- */
   const form = document.getElementById("contact-form");
   const status = form.querySelector(".form-status");
@@ -124,3 +127,140 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   );
 });
+
+
+/* ==========================================================================
+   Plateau 3D : la photo est déformée en WebGL selon une carte de profondeur
+   (fauteuils et table au premier plan, mur et logo au fond). Le point de vue
+   suit la souris, l'inclinaison du téléphone, ou oscille doucement tout seul.
+   ========================================================================== */
+function initStudio3D() {
+  const fig = document.querySelector(".hero-studio");
+  const canvas = fig && fig.querySelector("canvas");
+  const img = fig && fig.querySelector("img");
+  if (!canvas || !img) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const gl = canvas.getContext("webgl", { alpha: true, premultipliedAlpha: false, antialias: false });
+  if (!gl) return;
+
+  const vs = `
+    attribute vec2 p;
+    varying vec2 uv;
+    void main() { uv = p * 0.5 + 0.5; uv.y = 1.0 - uv.y; gl_Position = vec4(p, 0.0, 1.0); }`;
+  const fs = `
+    precision mediump float;
+    uniform sampler2D tex, depth;
+    uniform vec2 offset;   // direction du regard (-1..1)
+    uniform float zoom;
+    varying vec2 uv;
+    void main() {
+      vec2 c = (uv - 0.5) / zoom + 0.5;
+      float d = texture2D(depth, c).r;
+      // le plan focal est entre le mur et les fauteuils : le fond part
+      // dans un sens, le premier plan dans l'autre -> relief
+      vec2 st = c + offset * (d - 0.45) * vec2(0.038, 0.026);
+      // deuxième passe : affine l'échantillonnage sur la profondeur déplacée
+      d = texture2D(depth, st).r;
+      st = c + offset * (d - 0.45) * vec2(0.038, 0.026);
+      vec4 col = texture2D(tex, st);
+      // reflet lumineux qui glisse sur les objets du premier plan
+      float sheen = smoothstep(0.55, 0.85, d) * 0.07 * (0.5 + 0.5 * offset.x * (st.x - 0.5) * 2.0);
+      gl_FragColor = vec4(col.rgb + sheen, col.a);
+    }`;
+  const sh = (type, src) => {
+    const o = gl.createShader(type);
+    gl.shaderSource(o, src); gl.compileShader(o);
+    return gl.getShaderParameter(o, gl.COMPILE_STATUS) ? o : null;
+  };
+  const v = sh(gl.VERTEX_SHADER, vs), f = sh(gl.FRAGMENT_SHADER, fs);
+  if (!v || !f) return;
+  const prog = gl.createProgram();
+  gl.attachShader(prog, v); gl.attachShader(prog, f); gl.linkProgram(prog);
+  if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return;
+  gl.useProgram(prog);
+
+  gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+  const loc = gl.getAttribLocation(prog, "p");
+  gl.enableVertexAttribArray(loc);
+  gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+
+  const uOffset = gl.getUniformLocation(prog, "offset");
+  const uZoom = gl.getUniformLocation(prog, "zoom");
+  gl.uniform1i(gl.getUniformLocation(prog, "tex"), 0);
+  gl.uniform1i(gl.getUniformLocation(prog, "depth"), 1);
+  gl.uniform1f(uZoom, 1.04);
+
+  const loadImage = (src) => new Promise((res, rej) => {
+    const i = new Image();
+    i.onload = () => res(i); i.onerror = rej; i.src = src;
+  });
+  const upload = (unit, image) => {
+    const t = gl.createTexture();
+    gl.activeTexture(gl.TEXTURE0 + unit);
+    gl.bindTexture(gl.TEXTURE_2D, t);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
+  };
+
+  const target = { x: 0, y: 0 }, cur = { x: 0, y: 0 };
+  let lastInput = -1e9, visible = true, raf = 0;
+
+  const resize = () => {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const r = img.getBoundingClientRect();
+    canvas.width = Math.max(1, Math.round(r.width * dpr));
+    canvas.height = Math.max(1, Math.round(r.height * dpr));
+    gl.viewport(0, 0, canvas.width, canvas.height);
+  };
+
+  const frame = (t) => {
+    raf = 0;
+    if (!visible) return;
+    // sans interaction depuis 2,5 s : léger mouvement de caméra automatique
+    if (t - lastInput > 2500) {
+      target.x = Math.sin(t / 2600) * 0.7;
+      target.y = Math.sin(t / 3700) * 0.35;
+    }
+    cur.x += (target.x - cur.x) * 0.06;
+    cur.y += (target.y - cur.y) * 0.06;
+    gl.uniform2f(uOffset, cur.x, cur.y);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    raf = requestAnimationFrame(frame);
+  };
+  const start = () => { if (!raf) raf = requestAnimationFrame(frame); };
+
+  const hero = fig.closest(".hero") || document;
+  hero.addEventListener("pointermove", (e) => {
+    if (e.pointerType === "touch") return;
+    target.x = (e.clientX / window.innerWidth) * 2 - 1;
+    target.y = (e.clientY / window.innerHeight) * 2 - 1;
+    lastInput = performance.now();
+  }, { passive: true });
+  window.addEventListener("deviceorientation", (e) => {
+    if (e.gamma == null || e.beta == null) return;
+    target.x = Math.max(-1, Math.min(1, e.gamma / 25));
+    target.y = Math.max(-1, Math.min(1, (e.beta - 45) / 25));
+    lastInput = performance.now();
+  }, { passive: true });
+
+  Promise.all([
+    img.complete && img.naturalWidth ? Promise.resolve(img) : loadImage(img.currentSrc || img.src),
+    loadImage("assets/img/studio-the-boss-depth.webp"),
+  ]).then(([photo, depthMap]) => {
+    upload(0, photo);
+    upload(1, depthMap);
+    resize();
+    window.addEventListener("resize", resize);
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(([en]) => { visible = en.isIntersecting; if (visible) start(); })
+        .observe(fig);
+    }
+    fig.classList.add("is-3d");
+    start();
+  }).catch(() => { /* on garde simplement la photo */ });
+}
