@@ -3,8 +3,8 @@
    ========================================================================== */
 
 :root {
-  --ink: #0e1118;
-  --ink-2: #151a26;
+  --ink: #171b25;
+  --ink-2: #1f2433;
   --navy: #0e1a3d;
   --navy-2: #1a3478;
   --accent: #1f5eff;
@@ -173,7 +173,7 @@ h1, h2, h3 { margin: 0; }
   border-bottom: 1px solid transparent;
 }
 .site-header.is-scrolled {
-  background: rgba(14, 17, 24, 0.82);
+  background: rgba(23, 27, 37, 0.82);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom-color: var(--line);
@@ -533,7 +533,7 @@ h1, h2, h3 { margin: 0; }
 }
 .host-frame::after {
   content: ""; position: absolute; inset: auto 0 0 0; height: 35%;
-  background: linear-gradient(to top, rgba(14, 17, 24, .85), transparent);
+  background: linear-gradient(to top, rgba(23, 27, 37, .85), transparent);
 }
 .host-frame-label {
   position: absolute; right: -14px; top: 40px;
@@ -770,7 +770,7 @@ h1, h2, h3 { margin: 0; }
   .nav-toggle { display: flex; }
   .main-nav {
     position: fixed; inset: var(--header-h) 0 auto 0;
-    background: rgba(14, 17, 24, .97);
+    background: rgba(23, 27, 37, .97);
     backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--line);
     padding: 10px var(--gutter) 28px;
@@ -786,7 +786,7 @@ h1, h2, h3 { margin: 0; }
   .main-nav a:not(.btn)::after { display: none; }
   .nav-cta-mobile { display: block; margin-top: 22px; }
   .nav-cta-mobile .btn { width: 100%; color: #fff; }
-  .site-header.menu-open { background: rgba(14, 17, 24, .97); border-bottom-color: var(--line); }
+  .site-header.menu-open { background: rgba(23, 27, 37, .97); border-bottom-color: var(--line); }
 
   .hero { min-height: auto; padding-top: calc(var(--header-h) + 36px); }
   .hero-grid { grid-template-columns: 1fr; gap: 10px; }
