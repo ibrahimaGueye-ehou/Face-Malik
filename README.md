@@ -27,7 +27,8 @@ const CONFIG = {
 index.html          Page unique (hero, bienvenue, concept, esprit, présentateur, épisodes, contact)
 styles.css          Styles et responsive
 script.js           Menu mobile, animations, formulaire (mailto), configuration
-assets/img/         Logo, portrait, favicon, image de partage (Open Graph)
+assets/img/         Logo, portrait, icônes, image de partage (Open Graph)
+favicon.ico         Icône d’onglet du navigateur
 ```
 
 ## Mise en ligne
