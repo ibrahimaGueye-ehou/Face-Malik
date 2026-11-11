@@ -1,12 +1,12 @@
 /* ==========================================================================
-   THE BOSS — par Malik Eudy
+   FACE À MALIK — le podcast de Malik Eudy
    --------------------------------------------------------------------------
    CONFIGURATION : renseignez ici le lien de la chaîne YouTube et l'adresse
    e-mail qui recevra les propositions d'invités.
    ========================================================================== */
 const CONFIG = {
-  youtubeUrl: "https://www.youtube.com/", // ex. "https://www.youtube.com/@TheBossParMalikEudy"
-  contactEmail: "contact@example.com",     // ex. "contact@theboss.fr"
+  youtubeUrl: "https://www.youtube.com/", // ex. "https://www.youtube.com/@FaceAMalik"
+  contactEmail: "contact@example.com",     // ex. "contact@faceamalik.fr"
 };
 
 document.documentElement.classList.add("js");
@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const data = new FormData(form);
-    const subject = `THE BOSS — Proposition d'invité : ${data.get("name")}`;
+    const subject = `FACE À MALIK — Proposition d'invité : ${data.get("name")}`;
     const body =
       `Nom : ${data.get("name")}\n` +
       `E-mail : ${data.get("email")}\n` +
@@ -250,7 +250,7 @@ function initStudio3D() {
 
   Promise.all([
     img.complete && img.naturalWidth ? Promise.resolve(img) : loadImage(img.currentSrc || img.src),
-    loadImage("assets/img/studio-the-boss-depth.webp"),
+    loadImage("assets/img/studio-face-a-malik-depth.webp"),
   ]).then(([photo, depthMap]) => {
     upload(0, photo);
     upload(1, depthMap);
