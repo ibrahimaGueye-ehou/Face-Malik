@@ -527,9 +527,9 @@ h1, h2, h3 { margin: 0; }
   color: transparent; -webkit-text-stroke: 1px rgba(243, 241, 236, .1);
 }
 .host-frame img {
-  position: absolute; left: 50%; bottom: 0; transform: translateX(-50%);
-  width: 86%; height: auto;
-  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, .45));
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: 50% 20%;
 }
 .host-frame::after {
   content: ""; position: absolute; inset: auto 0 0 0; height: 35%;
