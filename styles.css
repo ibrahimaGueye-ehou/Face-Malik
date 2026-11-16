@@ -551,8 +551,9 @@ h1, h2, h3 { margin: 0; }
 }
 .host-role {
   font-size: .82rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase;
-  color: var(--accent-hi); margin-bottom: 28px;
+  color: var(--accent-hi); margin-bottom: 28px; line-height: 1.7;
 }
+.host-role span { white-space: nowrap; }
 .host-copy > p:not(.kicker):not(.host-role) { color: var(--muted); }
 .host-ambition {
   margin-top: 34px; padding: 26px 28px;
